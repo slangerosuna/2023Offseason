@@ -15,7 +15,7 @@ public class ArticulatedArm extends SubsystemBase {
     public final CANSparkMax intakeWristMotor = new CANSparkMax(Constants.ArmConstants.intakeWristMotorCANid, MotorType.kBrushless);
 
     //in in-lbs
-    public double getTorque(double firstStageRot, double secondStageRot, double intakeRot){
+    public double getTorqueFirstStage(double firstStageRot, double secondStageRot, double intakeRot){
         secondStageRot += 180;
 
         Vector2 totalCenterOfMass = new Vector2(0, 0);
@@ -37,6 +37,42 @@ public class ArticulatedArm extends SubsystemBase {
 
         transformedCenterOfMass = Vector2.add(pivotPoint, new Vector2((float)Math.sin(intakeRot * 180 / Math.PI) * Constants.ArmConstants.intakeCenterOfMass, 
                                                                       (float)Math.cos(intakeRot * 180 / Math.PI) * Constants.ArmConstants.intakeCenterOfMass));
+        totalCenterOfMass = Vector2.add(totalCenterOfMass, transformedCenterOfMass);
+        totalMass += Constants.ArmConstants.intakeMass;
+
+        Vector2 centerOfMass = Vector2.divide(totalCenterOfMass, totalMass);
+        return totalMass * Math.sin(Math.atan2(centerOfMass.y, centerOfMass.x)) * centerOfMass.magnitude();
+    }
+
+    public double getTorqueSecondStage(double secondStageRot, double intakeRot){
+        secondStageRot += 180;
+
+        Vector2 totalCenterOfMass = new Vector2(0, 0);
+        float totalMass = 0;
+
+        Vector2 transformedCenterOfMass = new Vector2((float)Math.sin(secondStageRot * 180 / Math.PI) * Constants.ArmConstants.secondStageCenterOfMass, 
+                                                      (float)Math.cos(secondStageRot * 180 / Math.PI) * Constants.ArmConstants.secondStageCenterOfMass);
+        totalCenterOfMass = Vector2.add(totalCenterOfMass, transformedCenterOfMass);
+        totalMass += Constants.ArmConstants.secondStageMass;
+
+        Vector2 pivotPoint = new Vector2((float)Math.sin(secondStageRot * 180 / Math.PI) * Constants.ArmConstants.secondStageNextPivot, 
+                                         (float)Math.cos(secondStageRot * 180 / Math.PI) * Constants.ArmConstants.secondStageNextPivot);
+
+        transformedCenterOfMass = Vector2.add(pivotPoint, new Vector2((float)Math.sin(intakeRot * 180 / Math.PI) * Constants.ArmConstants.intakeCenterOfMass, 
+                                                                      (float)Math.cos(intakeRot * 180 / Math.PI) * Constants.ArmConstants.intakeCenterOfMass));
+        totalCenterOfMass = Vector2.add(totalCenterOfMass, transformedCenterOfMass);
+        totalMass += Constants.ArmConstants.intakeMass;
+
+        Vector2 centerOfMass = Vector2.divide(totalCenterOfMass, totalMass);
+        return totalMass * Math.sin(Math.atan2(centerOfMass.y, centerOfMass.x)) * centerOfMass.magnitude();
+    }
+    
+    public double getIntakeTorque(double intakeRot){
+        Vector2 totalCenterOfMass = new Vector2(0, 0);
+        float totalMass = 0;
+
+        Vector2 transformedCenterOfMass = new Vector2((float)Math.sin(intakeRot * 180 / Math.PI) * Constants.ArmConstants.intakeCenterOfMass, 
+                                                      (float)Math.cos(intakeRot * 180 / Math.PI) * Constants.ArmConstants.intakeCenterOfMass);
         totalCenterOfMass = Vector2.add(totalCenterOfMass, transformedCenterOfMass);
         totalMass += Constants.ArmConstants.intakeMass;
 

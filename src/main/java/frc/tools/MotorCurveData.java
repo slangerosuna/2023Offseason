@@ -1,0 +1,14 @@
+package frc.tools;
+
+import java.util.List;
+
+public class MotorCurveData {
+    public List<Book> data;
+    public Book getAtSpeed_(float speed) throws Exception {
+        for (Book book : data) {
+            if(book.speed > speed)
+                return book;
+        }
+        throw new Exception("speed too high");
+    }
+}
