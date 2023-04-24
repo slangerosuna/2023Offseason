@@ -28,30 +28,34 @@ public class WCPSwerve implements WheelHardware {
         setpoint = 0;
     }
     public float getEncoderOut(){
+        // %360+360%360 keeps it in the range from 0 to 360
         return ((((float)encoder.getAbsolutePosition()-offset)%360)+360)%360;
     }
     float angleFactor(){
         float delta = getEncoderOut()-setpoint;
+        //convert to radians
         delta *= Math.PI/180;
         return (float)-Math.cos(delta);
     }
     public float PIDEncOut(){
+        //%180 in because it works with the wheels backwards as well
         return getEncoderOut() % 180;
     }
     public float getError(){
+        //%180 in because it works with the wheels backwards as well
         setpoint %= 180;
     
         //Checks what the error would be if looped over 180 in each direction
         float loopDownError = -((180 - setpoint) + PIDEncOut());
         float loopUpError = ((180 - PIDEncOut()) + setpoint);
     
-        //finds the largest of the two loop errors
+        //finds the smaller of the two loop errors
         float loopError = Math.abs(loopUpError) > Math.abs(loopDownError) ? loopDownError : loopUpError;
     
         //finds the error if it doesn't loop
         float nonLoopError = (setpoint%180) - PIDEncOut();
         
-        //finds the larger of the loop and non-loop errors
+        //finds the smaller of the loop and non-loop errors
         float error = (Math.abs(nonLoopError) > Math.abs(loopError)) ? loopError : nonLoopError;
     
         return (error);
@@ -66,7 +70,7 @@ public class WCPSwerve implements WheelHardware {
         setpoint *= 180/(float)Math.PI;
         this.setpoint = setpoint;
 
-        //sets the appropriate possition for using the built in PID of the angle motor by multiplying the error by the gear ratio from the angle motor to the wheel
+        //sets the appropriate position for using the built in PID of the angle motor by multiplying the error by the gear ratio from the angle motor to the wheel
         angle.set(ControlMode.Position, angle.getSelectedSensorPosition() - (getError() * angleToWheelRatio * 360));
     }
 }

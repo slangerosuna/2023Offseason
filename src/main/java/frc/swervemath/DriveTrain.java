@@ -27,7 +27,7 @@ public class DriveTrain {
             }
         } else {
             //balances rotation with strafing and makes the point on a line perpendicular to the heading to control the direction of movement
-            Vector2 pointOfRot = Vector2.multiply(new Vector2(Heading.y, -Heading.x).normalized(), Heading.magnitude() / rot);
+            Vector2 pointOfRot = Vector2.multiply(new Vector2(Heading.y, -Heading.x), 1 / rot);
 
             float max = 0;
 
@@ -43,6 +43,11 @@ public class DriveTrain {
                 else
                     angles[i] = (float)Math.atan2(-(-pointOfRot.x + wheel.pos.x), -pointOfRot.y + wheel.pos.y);
                 mags[i] = Vector2.subtract(wheel.pos, pointOfRot).magnitude();
+
+                //converts it from counter-clockwise positive to clockwise
+                angles[i] *= -1;
+                //moves 0 to forward
+                angles[i] -= Math.PI / 4;
 
                 //finds the maximum distance from the point of rot to a wheel
                 max = (mags[i] > max) ? mags[i] : max;
