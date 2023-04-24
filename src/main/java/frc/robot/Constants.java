@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.swervemath.math.Vector2;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -14,4 +16,22 @@ package frc.robot;
  */
 public final class Constants {
     public static final int IMUCANid = 0;
+    public static final class ArmConstants{
+        public static final int firstStageMotorCANid = 0;
+        public static final int secondStageMotorCANid1 = 0;
+        public static final int secondStageMotorCANid2 = 0;
+        public static final int intakeWristMotorCANid = 0;
+
+        //inches and pounds
+        public static final float firstStageNextPivot = 32;
+        public static final float firstStageCenterOfMass = 15.67f;
+        public static final float firstStageMass = 7.81f;
+
+        public static final float secondStageNextPivot = 27.36f;
+        public static final float secondStageCenterOfMass = 15.67f;
+        public static final float secondStageMass = 4.80f;
+
+        public static final float intakeCenterOfMass = 10.02f;
+        public static final float intakeMass = 3.36f;
+    }
 }
