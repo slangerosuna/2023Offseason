@@ -22,10 +22,10 @@ public class DriveTrain extends SubsystemBase {
 
   public DriveTrain() {
     DriveTrain = new frc.swervemath.DriveTrain(new PigeonInterface(Constants.IMUCANid), 
-                                               new Wheel(new WCPSwerve(20, 1, 10, 0), new Vector2(-1.05f, -1.3f)),
-                                               new Wheel(new WCPSwerve(2, 3, 11, 1), new Vector2(1.05f, -1.3f)),
-                                               new Wheel(new WCPSwerve(4, 5, 12, 2), new Vector2(-1.05f, 1.3f)),
-                                               new Wheel(new WCPSwerve(6, 7, 13, 3), new Vector2(1.05f, 1.3f)));
+                                               new Wheel(new WCPSwerve(7, 2, 13, 0), new Vector2(-1.05f, -1.3f)),
+                                               new Wheel(new WCPSwerve(8, 12, 11, 1), new Vector2(1.05f, -1.3f)),
+                                               new Wheel(new WCPSwerve(6, 3, 14, 2), new Vector2(-1.05f, 1.3f)),
+                                               new Wheel(new WCPSwerve(9, 4, 10, 3), new Vector2(1.05f, 1.3f)));
 
     DriveTrain.getGyro().zero();
   }
