@@ -33,5 +33,26 @@ public final class Constants {
 
         public static final float intakeCenterOfMass = 10.02f;
         public static final float intakeMass = 3.36f;
+
+        public static final double firstStageKp = 0.0;
+        public static final double firstStageKi = 0.0;
+        public static final double firstStageKd = 0.0;
+
+        public static final double secondStageKp = 0.0;
+        public static final double secondStageKi = 0.0;
+        public static final double secondStageKd = 0.0;
+
+        public static final double intakeKp = 0.0;
+        public static final double intakeKi = 0.0;
+        public static final double intakeKd = 0.0;
+
+        public static final double iLimit = 0.0;
+
+        public static final double kSecondStageCurrentLimit = 35.0;
+
+        public static final double firstStageGearRatio = 0;
+        public static final double secondStageGearRatio = 0;
+        public static final double intakeGearRatio = 0;
+
     }
 }

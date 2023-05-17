@@ -11,4 +11,8 @@ public class MotorCurveData {
         }
         throw new Exception("speed too high");
     }
+    public enum MotorType {
+        FALCON_500,
+        NEO
+    }
 }

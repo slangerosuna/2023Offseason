@@ -5,7 +5,7 @@ public class Falcon500MotorData extends MotorCurveData {
     public Falcon500MotorData(){
         data = CSVReader.readBooksFromCSV("Falcon500MotorCurveData.csv");
     }
-    public static Book getAtSpeed(float speed) throws Exception {
+    public static Book getAtSpeed(float speed) throws Exception{
         return instance.getAtSpeed_(speed);
     }
 }

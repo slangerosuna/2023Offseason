@@ -5,9 +5,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.wpi.first.wpilibj.Filesystem;
 
 /**
  * Simple Java program to read CSV file in Java. In this program we will read
@@ -19,7 +20,8 @@ import java.util.List;
 public class CSVReader {
     public static List<Book> readBooksFromCSV(String fileName) {
         List<Book> books = new ArrayList<>();
-        Path pathToFile = Paths.get(fileName);
+        Path pathToFile = Filesystem.getDeployDirectory().toPath().resolve(fileName);
+
 
         // create an instance of BufferedReader
         // using try with resource, Java 7 feature to close resources
@@ -67,26 +69,5 @@ public class CSVReader {
         float powerDissipation = Float.parseFloat(metadata[6]);
 
         return new Book(speed, torque, current, suppliedPower, outputPower, efficiency, powerDissipation);
-    }
-
-}
-
-class Book {
-    public float speed;
-    public float torque;
-    public float current;
-    public float suppliedPower;
-    public float outputPower;
-    public float efficiency;
-    public float powerDissipation;
-
-    public Book(float speed, float torque, float current, float suppliedPower, float outputPower, float efficiency, float powerDissipation){
-        this.speed = speed;
-        this.torque = torque;
-        this.current = current;
-        this.suppliedPower = suppliedPower;
-        this.outputPower = outputPower;
-        this.efficiency = efficiency;
-        this.powerDissipation = powerDissipation;
     }
 }
