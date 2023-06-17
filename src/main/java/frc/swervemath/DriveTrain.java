@@ -44,9 +44,8 @@ public class DriveTrain {
                     angles[i] = (float)Math.atan2(-(-pointOfRot.x + wheel.pos.x), -pointOfRot.y + wheel.pos.y);
                 mags[i] = Vector2.subtract(wheel.pos, pointOfRot).magnitude();
 
-                //converts it from counter-clockwise positive to clockwise
+                //Moves from standard position to the angle that we use
                 angles[i] *= -1;
-                //moves 0 to forward
                 angles[i] += Math.PI / 2;
 
                 //finds the maximum distance from the point of rot to a wheel
