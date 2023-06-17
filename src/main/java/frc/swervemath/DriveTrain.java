@@ -23,7 +23,7 @@ public class DriveTrain {
             //maxes the speed out at 100%
             speed = speed > 1 ? 1 : speed;
             for(int i = 0; i < wheels.length; i++){
-                wheels[i].setAngleAndSpeed((float)Math.atan2(Heading.x, -Heading.y), speed);
+                wheels[i].setAngleAndSpeed(-(float)Math.atan2(Heading.y, Heading.x) + (float)Math.PI / 2, speed);
             }
         } else {
             //balances rotation with strafing and makes the point on a line perpendicular to the heading to control the direction of movement
