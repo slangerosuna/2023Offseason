@@ -3,7 +3,8 @@ package frc.swervemath;
 import frc.swervemath.Hardware.WheelHardware;
 import frc.swervemath.math.Vector2;
 
-public class Wheel {
+//Probably should be refactored as an interface to reduce overhead
+public class Wheel { 
     public final WheelHardware hardware;
     public final Vector2 pos;
 

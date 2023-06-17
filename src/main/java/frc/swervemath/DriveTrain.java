@@ -47,7 +47,7 @@ public class DriveTrain {
                 //converts it from counter-clockwise positive to clockwise
                 angles[i] *= -1;
                 //moves 0 to forward
-                angles[i] -= Math.PI / 4;
+                angles[i] += Math.PI / 2;
 
                 //finds the maximum distance from the point of rot to a wheel
                 max = (mags[i] > max) ? mags[i] : max;

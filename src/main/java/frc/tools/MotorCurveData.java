@@ -1,6 +1,7 @@
 package frc.tools;
 
 import java.util.List;
+import frc.tools.Book;
 
 public class MotorCurveData {
     public List<Book> data;

@@ -33,4 +33,5 @@ public class Vector2 {
     public static float dot(Vector2 a, Vector2 b) { 
         return a.x * b.x + a.y * b.y; 
     }
+    //TODO Cross Product
 }

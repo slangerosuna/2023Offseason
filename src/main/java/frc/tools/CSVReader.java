@@ -10,13 +10,8 @@ import java.util.List;
 
 import edu.wpi.first.wpilibj.Filesystem;
 
-/**
- * Simple Java program to read CSV file in Java. In this program we will read
- * list of books stored in CSV file as comma separated values.
- * 
- * @author WINDOWS 8
- *
- */
+import frc.tools.Book;
+
 public class CSVReader {
     public static List<Book> readBooksFromCSV(String fileName) {
         List<Book> books = new ArrayList<>();

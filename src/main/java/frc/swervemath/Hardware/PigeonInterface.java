@@ -4,6 +4,7 @@ import com.ctre.phoenix.sensors.Pigeon2;
 
 import frc.robot.Constants;
 
+//should refactor name because it isn't an interface
 public class PigeonInterface implements Gyro {
     private final Pigeon2 pigeon;
     private float calibrationAngle;

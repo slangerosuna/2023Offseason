@@ -15,6 +15,7 @@ public class WCPSwerve implements WheelHardware {
 
     private float setpoint;
 
+    //maybe make not constant so that it works better with other ratios
     private final float angleToWheelRatio = 72/7;
 
     public WCPSwerve(int angleID, int speedID, int encoderID, int id){
@@ -65,6 +66,7 @@ public class WCPSwerve implements WheelHardware {
         this.speed.set(ControlMode.PercentOutput, speed * angleFactor());
     }
     
+    //May be better to refactor with new TalonFX closed-loop PID controller
     public void setSetpoint(float setpoint){
         //converts from radians to degrees
         setpoint *= 180/(float)Math.PI;
